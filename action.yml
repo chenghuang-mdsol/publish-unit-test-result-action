@@ -33,7 +33,7 @@ runs:
         python -m virtualenv venv
         . venv/Scripts/activate
         python -m pip install --upgrade --force --no-cache-dir pip
-        pip install --upgrade --force --no-cache-dir -r $GITHUB_ACTION_PATH/requirements.txt
+        pip install --upgrade --force --no-cache-dir -r ${Env:GITHUB_ACTION_PATH}/requirements.txt
         echo '##[endgroup]'
       shell: powershell
 
@@ -41,7 +41,7 @@ runs:
       run: |
         echo '##[group]Publish Unit Test Results'
         . venv/Scripts/activate
-        python $GITHUB_ACTION_PATH/publish_unit_test_results.py
+        python ${Env:GITHUB_ACTION_PATH}/publish_unit_test_results.py
         echo '##[endgroup]'
       env:
         GITHUB_TOKEN: ${{ inputs.github_token }}
